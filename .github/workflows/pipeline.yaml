@@ -1,0 +1,35 @@
+name: Deploy Airflow Prod
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  airflow-prod-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install AWS CLI
+        run: |
+          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+          unzip awscli-bundle.zip
+          sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
+      - name: Install Git
+        run: sudo apt-get -y install git
+
+      - name: Clone Airflow Repository
+        run: |
+          git clone https://github.com/BGR-InfraData/airflow.git /tmp/airflow
+
+      - name: Copy DAGs to EC2
+        env:
+          EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
+          EC2_PUBLIC_DNS: ${{ secrets.EC2_PUBLIC_DNS }}
+        run: |
+          chmod 400 /home/github/.ssh/id_rsa_aa9ef67db299216d5cdfe6541713b61c
+          scp -o StrictHostKeyChecking=no -i "/home/github/.ssh/id_rsa_aa9ef67db299216d5cdfe6541713b61c" -r /tmp/airflow/dags $EC2_USERNAME@$EC2_PUBLIC_DNS:/home/admin/
