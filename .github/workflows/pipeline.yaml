@@ -54,7 +54,6 @@ jobs:
                                   export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION && \
                                   aws s3 cp s3://bgr-dags-airflow/project_airflow.tar.gz /home/ubuntu/data-scope-x/project_airflow.tar.gz && \
                                   tar xzf /home/ubuntu/data-scope-x/project_airflow.tar.gz -C /home/ubuntu/data-scope-x/project_airflow && \
-                                  cd /home/ubuntu/data-scope-x && \
                                   cp -fr /home/ubuntu/data-scope-x/project_airflow/dags /home/ubuntu/data-scope-x/airflow
            --output text
           echo $?
