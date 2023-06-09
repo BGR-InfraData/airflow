@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 import mlflow
 import numpy as np
 import pandas as pd
-from airflow import DAG
 from airflow.models import Variable
 from airflow.operators.python_operator import PythonOperator
 from mlflow.models.signature import infer_signature
@@ -12,8 +11,10 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 
+from airflow import DAG
+
 default_args = {
-    'owner': 'gustavo',
+    'owner': ['gustavo', 'ronald'],
     'depends_on_past': False,
     'start_date': datetime(2023, 5, 6),
     'email': ['gust4vo-mlo@hotmail.com'],
