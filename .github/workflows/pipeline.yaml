@@ -53,7 +53,8 @@ jobs:
                                   export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY && \
                                   export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION && \
                                   aws s3 cp s3://bgr-dags-airflow/project_airflow.tar.gz /home/ubuntu/project_airflow.tar.gz && \
+                                  sudo mkdir /home/ubuntu/project_airflow && \
                                   tar xzf /home/ubuntu/project_airflow.tar.gz -C /home/ubuntu/project_airflow && \
-                                  cp -fr /home/ubuntu/project_airflow/dags /home/ubuntu/data-scope-x" \
+                                  sudo cp -fr /home/ubuntu/project_airflow/dags /home/ubuntu/data-scope-x" \
            --output text
           echo $?
