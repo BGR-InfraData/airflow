@@ -16,7 +16,7 @@ default_args = {
     'owner': ['gustavo', 'ronald'],
     'depends_on_past': False,
     'start_date': datetime(2023, 5, 6),
-    'email': ['gust4vo-mlo@hotmail.com'],
+    'email': ['gust4vo-mlo@hotmail.com', 'ronaldnnr@gmail.com'],
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,
